@@ -1,6 +1,6 @@
 %define module  IO-Pager
 %define name    perl-%{module}
-%define release %mkrel 3
+%define release %mkrel 4
 %define version 0.06
 
 Name:               %{name}
