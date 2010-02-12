@@ -1,18 +1,18 @@
-%define module  IO-Pager
-%define name    perl-%{module}
-%define release %mkrel 4
-%define version 0.06
+%define upstream_name    IO-Pager
+%define upstream_version 0.06
 
-Name:               %{name}
-Version:            %{version}
-Release:            %{release}
-Summary:            Perl Module for Syndication feed auto-discovery
-License:            GPL or Artistic
-Group:              Development/Perl
-Url:                http://search.cpan.org/dist/%{module}/
-Source:             http://www.cpan.org/modules/by-module/XML/%{module}-%{version}.tar.bz2
-BuildRoot:          %{_tmppath}/%{name}-%{version}
-BuildArch:          noarch
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
+Summary:    Perl Module for Syndication feed auto-discovery
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}/
+Source0:    http://www.cpan.org/modules/by-module/XML/%{upstream_name}-%{upstream_version}.tar.bz2
+
+BuildArch:  noarch
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Perl Module for Syndication feed auto-discovery.
@@ -29,7 +29,7 @@ RSS 2.0
 Atom
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 # only when building from CVS (version 1.51-3mdk)
@@ -40,7 +40,7 @@ SKIP_SAX_INSTALL=1 CFLAGS="$RPM_OPT_FLAGS" %{__perl} Makefile.PL INSTALLDIRS=ven
 %make
 
 %check
-make test < /dev/null
+%make test < /dev/null
 
 %clean 
 rm -rf %{buildroot}
